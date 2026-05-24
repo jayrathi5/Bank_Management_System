@@ -4,8 +4,10 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.*;
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener{
     JLabel label1,label2,label3;
     JTextField textfield1;
     JPasswordField passwordfield1;
@@ -32,7 +34,7 @@ public class Login extends JFrame {
         label1.setBounds(230,125,450,40);
         add(label1);
 
- 
+  
         label2=new JLabel("Card Number:");
         label2.setForeground(Color.WHITE);
         label2.setFont(new Font("Arial",Font.BOLD,28));
@@ -60,16 +62,19 @@ public class Login extends JFrame {
         button1.setForeground(Color.WHITE);
         button1.setBackground(Color.BLACK);
         button1.setBounds(325,300,100,30);
+        button1.addActionListener(this);
         add(button1);
         button2=new JButton("Clear");
         button2.setForeground(Color.WHITE);
         button2.setBackground(Color.BLACK);
         button2.setBounds(455,300,100,30);
+        button2.addActionListener(this);
         add(button2);
         button3=new JButton("Sign up");
         button3.setForeground(Color.WHITE);
         button3.setBackground(Color.BLACK);
         button3.setBounds(325,350,100,30);
+        button3.addActionListener(this);
         add(button3);
 
         ImageIcon i7=new ImageIcon(ClassLoader.getSystemResource("Images/i3.png")); //This backgorund image should be added at last because it will overlap the other two images if we add it before them
@@ -83,6 +88,29 @@ public class Login extends JFrame {
        setSize(850,480);
         setLocation(450,200);
         setVisible(true);//It should be always the last line of constructor
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        try{
+            if(e.getSource()==button1)
+            {
+
+            }
+            else if(e.getSource()==button2)
+            {
+                textfield1.setText("");
+                passwordfield1.setText("");
+
+            }
+            else
+            {
+
+            }
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
     public static void main(String[] args) {
         new Login();
