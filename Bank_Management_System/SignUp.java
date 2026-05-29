@@ -205,7 +205,44 @@ public class SignUp extends JFrame implements ActionListener {
         try {
             if(name.equals("")) {
                 JOptionPane.showMessageDialog(null,"Name is required");
-            } else {
+            } 
+            else if(fathername.equals("")){
+                JOptionPane.showMessageDialog(null,"Father's Name is required");
+            }
+            else if(dob.equals(""))
+            {
+                JOptionPane.showMessageDialog(null,"Date of Birth is required");
+            }
+            else if(gender==null)
+            {
+                JOptionPane.showMessageDialog(null,"Gender is required");
+            }
+            else if(email.equals(""))
+            {
+                JOptionPane.showMessageDialog(null,"Email is Required");
+
+            }
+            else if(marital==null)
+            {
+                JOptionPane.showMessageDialog(null,"Marital Status is required");
+            }
+            else if(address.equals(""))
+            {
+                JOptionPane.showMessageDialog(null,"Address is required");
+            }
+            else if(city.equals(""))
+            {
+                JOptionPane.showMessageDialog(null,"City is required");
+            }
+            else if(pincode.equals(""))
+            {
+                JOptionPane.showMessageDialog(null,"Pin Code is required");
+            }
+            else if(state.equals(""))
+            {
+                JOptionPane.showMessageDialog(null,"State is required");
+            }
+            else {
                 Con c1=new Con();
                 String q="insert into signup values('"+formno+"','"+name+"','"+fathername+"','"+dob+"','"+gender+"','"+email+"','"+marital+"','"+address+"','"+city+"','"+pincode+"','"+state+"')";
                 c1.statement.executeUpdate(q);
