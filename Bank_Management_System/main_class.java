@@ -6,9 +6,14 @@ import java.awt.event.ActionListener;
 public class main_class extends JFrame implements ActionListener{
     JLabel l;
     JButton b1,b2,b3,b4,b5,b6,b7;
+    String pin;
+    String cardno;
 
-main_class()
-{      ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("Images/atm2.png"));
+    main_class(String pin,String cardno)
+    {       
+        this.pin=pin;  
+        this.cardno=cardno;
+     ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("Images/atm2.png"));
        Image i2=i1.getImage().getScaledInstance(1550, 830,Image.SCALE_DEFAULT);
        JLabel l1=new JLabel(new ImageIcon(i2));
        l1.setBounds(0, 0, 1550, 830);
@@ -82,9 +87,43 @@ main_class()
 }
 public void actionPerformed(ActionEvent e)
 {
-    
+    if(e.getSource()==b1)
+    {
+        setVisible(false);
+        new Deposit(pin, cardno);
+    }
+    else if(e.getSource()==b2)
+    {
+        setVisible(false);
+        new Withdraw(pin, cardno);
+    }
+    else if(e.getSource()==b3)
+    {
+        setVisible(false);
+        new FastCash(pin, cardno);
+    }
+    else if(e.getSource()==b4)
+    {
+        setVisible(false);
+        new MiniStatement(pin, cardno);
+    }
+    else if(e.getSource()==b5)
+    {
+        setVisible(false);
+        new ChangePin(pin, cardno);
+    }
+    else if(e.getSource()==b6)
+    {
+        setVisible(false);
+        new Balance(pin, cardno);
+    }
+    else if(e.getSource()==b7)
+    {
+        setVisible(false); 
+    }
 }
+
     public static void main(String[] args) {
-    new main_class();
- }   
+        new main_class("6513","0000000000000000");
+    }   
 }

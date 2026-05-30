@@ -7,12 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 public class Deposit extends JFrame implements ActionListener {
     String pin;
+    String cardno;
     JLabel l;
     JTextField t;
     JButton b1,b2;
-    Deposit(String pin) {
-        
+    Deposit(String pin, String cardno) {
         this.pin = pin;
+        this.cardno = cardno;
         // Constructor for Deposit class
         ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("Images/atm2.png"));
         Image i2=i1.getImage().getScaledInstance(1550, 830,Image.SCALE_DEFAULT);
@@ -69,6 +70,7 @@ public class Deposit extends JFrame implements ActionListener {
             c.statement.executeUpdate(query);
             JOptionPane.showMessageDialog(null,"Rs. "+amount+" Deposited Successfully");
             setVisible(false);
+            new main_class(pin, this.cardno);
         }
         catch(Exception ex)
         {
@@ -81,6 +83,6 @@ public class Deposit extends JFrame implements ActionListener {
         }
         }
     public static void main(String[] args) {
-        new Deposit("");
+        new Deposit("",""); 
     }
 }
