@@ -2,6 +2,8 @@ package Bank_Management_System;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.*;
 
 public class SignUp3 extends JFrame implements ActionListener {
@@ -157,6 +159,7 @@ public class SignUp3 extends JFrame implements ActionListener {
         b1.setFont(new Font("Arial",Font.BOLD,14));
         b1.setBackground(Color.BLACK);
         b1.setForeground(Color.WHITE);
+        b1.addActionListener(this);
         add(b1);
 
         b2=new JButton("Cancel");
@@ -164,6 +167,7 @@ public class SignUp3 extends JFrame implements ActionListener {
         b2.setFont(new Font("Arial",Font.BOLD,14));
         b2.setBackground(Color.BLACK);
         b2.setForeground(Color.WHITE);
+        b2.addActionListener(this);
         add(b2);
 
         getContentPane().setBackground(new Color(173, 216, 230));
@@ -179,9 +183,20 @@ public class SignUp3 extends JFrame implements ActionListener {
         else if (r2.isSelected()) accountType = "Fixed Deposit Account";
         else if (r3.isSelected()) accountType = "Current Account";
         else if (r4.isSelected()) accountType = "Recurring Deposit Account";
+    Random r1,r2,r3,r4;
+        r1=new Random();
+        r2=new Random();
+        r3=new Random();
+        r4=new Random();
+        String a1=String.valueOf(r1.nextInt(1000,9999));
+        String a2=String.valueOf(r2.nextInt(1000,9999));
+        String a3=String.valueOf(r3.nextInt(1000,9999));
+        String a4=String.valueOf(r4.nextInt(1000,9999));
 
-        String cardNumber = "XXXX-XXXX-XXXX-4184";
-        String pin = "XXXX";
+        String cardNumber =a1+"-"+a2+"-"+a3+"-"+a4;
+        Random r=new Random();
+        int a=r.nextInt(1000,9999);
+        String pin = String.valueOf(a);
         String services = "";
         if (c1.isSelected()) services += "ATM Card, ";
         if (c2.isSelected()) services += "Internet Banking, ";
@@ -192,10 +207,26 @@ public class SignUp3 extends JFrame implements ActionListener {
         if (!services.isEmpty()) services = services.substring(0, services.length() - 2);
 
         try{
+         if(ae.getSource()==b1)
+            {
+            if(accountType == null) {
+                JOptionPane.showMessageDialog(null, "Please select an account type.");
+                return;
+            }
+            else if(services.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please select at least one service.");
+                return;
+            }
+            
             Con c=new Con();
-            String query="insert into account_details values('"+formNoValue+"','"+accountType+"','"+cardNumber+"','"+pin+"','"+services+"')";
-            c.statement.executeUpdate(query);
+            String query="insert into signup3 values('"+formNoValue+"','"+accountType+"','"+cardNumber+"','"+pin+"','"+services+"')";
+            String q2="insert into login values('"+formNoValue+"','"+cardNumber+"','"+pin+"')";
+         c.statement.executeUpdate(query);
+         c.statement.executeUpdate(q2);
+      JOptionPane.showMessageDialog(null,"Card Number: " + cardNumber + "\nPIN: " + pin);
+         new Deposit(pin);
             setVisible(false);
+        }
         }
         catch(Exception e){
             e.printStackTrace();
