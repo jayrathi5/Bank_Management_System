@@ -104,7 +104,8 @@ public class Login extends JFrame implements ActionListener{
             }
             else
             {
-
+                new SignUp();
+                setVisible(false);
             }
         }
         catch(Exception ex)

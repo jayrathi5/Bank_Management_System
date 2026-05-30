@@ -10,8 +10,11 @@ public class SignUp2 extends JFrame implements ActionListener {
     JComboBox<String> c1,c2,c3,c4,c5;
     JRadioButton r1,r2,r3,r4;
 
-    SignUp2(){
+    private final String formNoValue;
+
+    SignUp2(String formNoValue){
         super("Application Form - Page 2");
+        this.formNoValue = formNoValue;
         setLayout(null);
 
         Color bg = new Color(255, 255, 153); // light yellow
@@ -29,8 +32,7 @@ public class SignUp2 extends JFrame implements ActionListener {
         page2.setForeground(fg);
         add(page2);
 
-        SignUp s=new SignUp();
-        formno=new JLabel("Form No: " + s.formno);
+        formno=new JLabel("Form No: " + formNoValue);
         formno.setBounds(520,25,300,30);
         formno.setFont(new Font("Arial",Font.BOLD,22));
         formno.setForeground(fg);
@@ -191,10 +193,41 @@ public class SignUp2 extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae)
     {
+        String religion=(String)c1.getSelectedItem();
+        String category=(String)c2.getSelectedItem();
+        String income=(String)c3.getSelectedItem();
+        String education=(String)c4.getSelectedItem();
+        String occupation=(String)c5.getSelectedItem();
 
+        String pan=t1.getText();
+        String aadhar=t2.getText();
+
+        String seniorcitizen=null;
+        if(r1.isSelected())
+            seniorcitizen="Yes";
+        else if(r2.isSelected())
+            seniorcitizen="No";
+
+        String existingaccount=null;
+        if(r3.isSelected())
+            existingaccount="Yes";
+        else if(r4.isSelected())
+            existingaccount="No";
+
+        try{
+            Con con=new Con();
+            String query="insert into signup2 values('"+formNoValue+"','"+religion+"','"+category+"','"+income+"','"+education+"','"+occupation+"','"+pan+"','"+aadhar+"','"+seniorcitizen+"','"+existingaccount+"')";
+            con.statement.executeUpdate(query);
+            new SignUp3(formNoValue);
+            setVisible(false);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-        new SignUp2();
+        new SignUp2("1234");
     }
 }
