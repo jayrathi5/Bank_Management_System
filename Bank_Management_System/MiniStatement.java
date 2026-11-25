@@ -29,8 +29,10 @@ public class MiniStatement extends JFrame implements ActionListener{
         add(cardLabel);
 
         String card = cardNo == null ? "" : cardNo;
-        if (card.length() >= 16) {
-            cardLabel.setText("Card Number: " + card.substring(0,4) + "XXXXXXXX" + card.substring(12,16));
+        String digits = card.replaceAll("[^0-9]", "");
+        if (digits.length() >= 16) {
+            cardLabel.setText("Card Number: " + digits.substring(0, 4) + "-XXXX-XXXX-"
+                    + digits.substring(digits.length() - 4));
         } else {
             cardLabel.setText("Card Number: " + card);
         }
@@ -90,6 +92,7 @@ public class MiniStatement extends JFrame implements ActionListener{
         if(e.getSource()==b1)
         {
             setVisible(false);
+            new main_class(pin, cardNo);
         }
     }
     public static void main(String[] args) {

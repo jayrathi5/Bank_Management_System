@@ -81,6 +81,7 @@ public class main_class extends JFrame implements ActionListener{
     l1.add(b7);
         setLayout(null);
 
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocation(0,0);
     setSize(1550, 830);
     setVisible(true);
@@ -119,7 +120,8 @@ public void actionPerformed(ActionEvent e)
     }
     else if(e.getSource()==b7)
     {
-        setVisible(false); 
+        setVisible(false);
+        System.exit(0);
     }
 }
 

@@ -80,6 +80,7 @@ public class Deposit extends JFrame implements ActionListener {
         }
         else{
             setVisible(false);
+            new main_class(pin, cardno);
         }
         }
     public static void main(String[] args) {

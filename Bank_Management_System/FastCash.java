@@ -97,6 +97,7 @@ public class FastCash extends JFrame implements ActionListener{
         {
             setVisible(false);
             new main_class(this.pin, this.cardno);
+            return;
         }
         try{
             Con c=new Con();

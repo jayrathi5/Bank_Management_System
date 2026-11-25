@@ -105,7 +105,7 @@ public class Withdraw extends JFrame implements ActionListener{
                     String q="insert into bank values('"+pin+"','"+date+"','Withdraw','"+withdrawamount+"')";
                     c.statement.executeUpdate(q);
                     JOptionPane.showMessageDialog(null,"Rs. "+withdrawamount+" Withdrawn Successfully");
-                    new main_class(pin);
+                    new main_class(pin, cardno);
                     setVisible(false);
 
                 }
@@ -115,6 +115,11 @@ public class Withdraw extends JFrame implements ActionListener{
                     System.out.println(ex);
                 }
             }
+        }
+        else if(e.getSource()==b2)
+        {
+            setVisible(false);
+            new main_class(pin, cardno);
         }
     }
 

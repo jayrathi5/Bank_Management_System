@@ -86,6 +86,7 @@ public class Login extends JFrame implements ActionListener{
         add(image3);
 
         setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        setSize(850,480);
         setLocation(450,200);
         setVisible(true);//It should be always the last line of constructor
